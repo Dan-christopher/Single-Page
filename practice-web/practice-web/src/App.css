@@ -1,7 +1,0 @@
-/* App-level overrides — kept minimal, 
-   all main styles live in index.css */
-
-#root {
-  width: 100%;
-  position: relative;
-}
