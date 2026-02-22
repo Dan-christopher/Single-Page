@@ -1,16 +1,24 @@
 @import "tailwindcss";
 
-/* ===== CSS VARIABLES ===== */
+/* ===== CSS VARIABLES — matched to LOGO1.png palette ===== */
 :root {
-  --bg-deep: #0b0f19;
-  --accent-blue: #4f6ef7;
-  --accent-purple: #7c3aed;
+  --bg-light: #fffaf7;
+  --coral: #e8886f;
+  --coral-deep: #d4735c;
+  --coral-light: #f4a58e;
+  --peach: #f0bfa0;
+  --peach-light: #f7dcc8;
+  --sand: #fce8d5;
+  --warm-white: #fef5ee;
+  --text-dark: #3d2c22;
+  --text-medium: #7a5c4f;
+  --text-muted: #a8887a;
 
   font-family: 'Inter', 'SF Pro Display', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.92);
-  background-color: var(--bg-deep);
+  color: var(--text-dark);
+  background-color: var(--bg-light);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,30 +28,40 @@
 
 body {
   min-height: 100vh;
-  background-color: var(--bg-deep);
+  background-color: var(--bg-light);
   overflow-x: hidden;
 }
 
-/* ===== ANIMATED BACKGROUND ===== */
+/* ===== WARM GRADIENT BACKGROUND ===== */
 .app-wrapper {
   position: relative;
   min-height: 100vh;
   width: 100%;
-  background-color: var(--bg-deep);
+  background:
+    linear-gradient(135deg,
+      #fffaf7 0%,
+      #fef0e6 20%,
+      #fde4d4 40%,
+      #fce8d5 55%,
+      #fdf0e8 70%,
+      #fef7f2 85%,
+      #fffaf7 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 20s ease infinite;
   overflow: hidden;
 }
 
-/* Radial gradient glow — top right (blue) */
+/* Radial glow — top right (coral) */
 .app-wrapper::before {
   content: '';
   position: fixed;
-  top: -20%;
-  right: -10%;
-  width: 60vw;
-  height: 60vh;
+  top: -12%;
+  right: -6%;
+  width: 50vw;
+  height: 50vh;
   background: radial-gradient(ellipse at center,
-      rgba(79, 110, 247, 0.18) 0%,
-      rgba(79, 110, 247, 0.06) 40%,
+      rgba(232, 136, 111, 0.18) 0%,
+      rgba(232, 136, 111, 0.06) 40%,
       transparent 70%);
   filter: blur(60px);
   pointer-events: none;
@@ -51,17 +69,17 @@ body {
   z-index: 0;
 }
 
-/* Radial gradient glow — bottom left (purple) */
+/* Radial glow — bottom left (peach) */
 .app-wrapper::after {
   content: '';
   position: fixed;
-  bottom: -15%;
-  left: -10%;
-  width: 50vw;
-  height: 55vh;
+  bottom: -10%;
+  left: -6%;
+  width: 45vw;
+  height: 45vh;
   background: radial-gradient(ellipse at center,
-      rgba(124, 58, 237, 0.15) 0%,
-      rgba(124, 58, 237, 0.05) 40%,
+      rgba(240, 191, 160, 0.2) 0%,
+      rgba(240, 191, 160, 0.07) 40%,
       transparent 70%);
   filter: blur(60px);
   pointer-events: none;
@@ -69,7 +87,7 @@ body {
   z-index: 0;
 }
 
-/* Subtle grid overlay */
+/* Subtle warm grid overlay */
 #root {
   width: 100%;
   position: relative;
@@ -80,8 +98,8 @@ body {
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(rgba(232, 136, 111, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 136, 111, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
   z-index: 0;
@@ -89,12 +107,12 @@ body {
   -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 70%);
 }
 
-/* Noise texture overlay */
+/* Noise texture — very subtle */
 #root::after {
   content: '';
   position: fixed;
   inset: 0;
-  opacity: 0.035;
+  opacity: 0.015;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   pointer-events: none;
@@ -102,6 +120,20 @@ body {
 }
 
 /* ===== KEYFRAME ANIMATIONS ===== */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 @keyframes drift-glow {
   0% {
     transform: translate(0, 0) scale(1);
@@ -133,5 +165,51 @@ body {
   100% {
     transform: translate(-20px, 10px) scale(0.97);
     opacity: 0.7;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  33% {
+    transform: translateY(-12px) rotate(1deg);
+  }
+
+  66% {
+    transform: translateY(6px) rotate(-1deg);
+  }
+}
+
+@keyframes float-delayed {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  33% {
+    transform: translateY(10px) rotate(-1deg);
+  }
+
+  66% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes pulse-soft {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
   }
 }
