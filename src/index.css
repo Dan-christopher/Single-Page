@@ -2,7 +2,8 @@
 
 /* ===== CSS VARIABLES — matched to LOGO1.png palette ===== */
 :root {
-  --bg-light: #fffaf7;
+  --bg-primary: #fffaf7;
+  --bg-secondary: #fef5ee;
   --coral: #e8886f;
   --coral-deep: #d4735c;
   --coral-light: #f4a58e;
@@ -18,18 +19,32 @@
   line-height: 1.6;
   font-weight: 400;
   color: var(--text-dark);
-  background-color: var(--bg-light);
+  background-color: var(--bg-primary);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: color 0.5s ease, background-color 0.5s ease;
+}
+
+/* ===== DARK THEME ===== */
+[data-theme="dark"] {
+  --bg-primary: #0f0b14;
+  --bg-secondary: #1a1520;
+  --text-dark: #f0e6de;
+  --text-medium: #c9a89a;
+  --text-muted: #8a7068;
+  --sand: #2a2030;
+  --warm-white: #1e1824;
+  --peach-light: #352a3d;
 }
 
 body {
   min-height: 100vh;
-  background-color: var(--bg-light);
+  background-color: var(--bg-primary);
   overflow-x: hidden;
+  transition: background-color 0.5s ease;
 }
 
 /* ===== WARM GRADIENT BACKGROUND ===== */
@@ -49,6 +64,21 @@ body {
   background-size: 200% 200%;
   animation: gradient-shift 20s ease infinite;
   overflow: hidden;
+  transition: background 0.6s ease;
+}
+
+[data-theme="dark"] .app-wrapper {
+  background:
+    linear-gradient(135deg,
+      #0f0b14 0%,
+      #150f1c 20%,
+      #1a1225 40%,
+      #1e1528 55%,
+      #1a1220 70%,
+      #130e18 85%,
+      #0f0b14 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 20s ease infinite;
 }
 
 /* Radial glow — top right (coral) */
@@ -67,6 +97,14 @@ body {
   pointer-events: none;
   animation: drift-glow 12s ease-in-out infinite alternate;
   z-index: 0;
+  transition: background 0.6s ease;
+}
+
+[data-theme="dark"] .app-wrapper::before {
+  background: radial-gradient(ellipse at center,
+      rgba(232, 136, 111, 0.12) 0%,
+      rgba(180, 80, 60, 0.05) 40%,
+      transparent 70%);
 }
 
 /* Radial glow — bottom left (peach) */
@@ -85,6 +123,14 @@ body {
   pointer-events: none;
   animation: drift-glow-reverse 14s ease-in-out infinite alternate;
   z-index: 0;
+  transition: background 0.6s ease;
+}
+
+[data-theme="dark"] .app-wrapper::after {
+  background: radial-gradient(ellipse at center,
+      rgba(160, 100, 180, 0.12) 0%,
+      rgba(120, 60, 140, 0.05) 40%,
+      transparent 70%);
 }
 
 /* Subtle warm grid overlay */
@@ -105,6 +151,14 @@ body {
   z-index: 0;
   mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 70%);
   -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 70%);
+  transition: opacity 0.5s ease;
+}
+
+[data-theme="dark"] #root::before {
+  background-image:
+    linear-gradient(rgba(232, 136, 111, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 136, 111, 0.02) 1px, transparent 1px);
+  opacity: 0.5;
 }
 
 /* Noise texture — very subtle */
