@@ -15,8 +15,14 @@ const Hero = () => {
             {/* Badge */}
             <div className="relative mb-8">
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-semibold tracking-widest uppercase rounded-full
-                               bg-white/60 backdrop-blur-md border border-[#f0bfa0]/30 text-[#7a5c4f]
-                               shadow-[0_2px_10px_rgba(232,136,111,0.06)]">
+                               backdrop-blur-md border shadow-[0_2px_10px_rgba(232,136,111,0.06)]
+                               transition-all duration-500"
+                    style={{
+                        backgroundColor: 'color-mix(in srgb, var(--bg-secondary) 60%, transparent)',
+                        borderColor: 'color-mix(in srgb, var(--peach, #f0bfa0) 30%, transparent)',
+                        color: 'var(--text-medium)'
+                    }}
+                >
                     <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[#e8886f] to-[#f0bfa0] animate-pulse" />
                     Now Available
                 </span>
@@ -24,7 +30,7 @@ const Hero = () => {
 
             {/* Heading */}
             <h1 className="relative max-w-4xl text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight mb-6">
-                <span className="text-[#3d2c22]">Build Something</span>
+                <span style={{ color: 'var(--text-dark)' }} className="transition-colors duration-500">Build Something</span>
                 <br />
                 <span className="bg-gradient-to-r from-[#e8886f] via-[#d4735c] to-[#f0bfa0] bg-clip-text text-transparent">
                     Extraordinary
@@ -32,7 +38,9 @@ const Hero = () => {
             </h1>
 
             {/* Subtitle */}
-            <p className="relative max-w-2xl text-lg sm:text-xl text-[#a8887a] leading-relaxed mb-10 font-normal">
+            <p className="relative max-w-2xl text-lg sm:text-xl leading-relaxed mb-10 font-normal transition-colors duration-500"
+                style={{ color: 'var(--text-muted)' }}
+            >
                 Craft premium digital experiences with modern AI-powered design,
                 seamless interactions, and intelligent creative tools.
             </p>
@@ -55,12 +63,17 @@ const Hero = () => {
                 </a>
                 <a
                     href="#"
-                    className="inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold text-[#7a5c4f]
-                               bg-white/50 backdrop-blur-md border border-[#f0bfa0]/40 rounded-xl
+                    className="inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold
+                               backdrop-blur-md border rounded-xl
                                shadow-[0_2px_8px_rgba(232,136,111,0.06)]
-                               hover:bg-white/70 hover:border-[#e8886f]/40 hover:-translate-y-0.5
+                               hover:-translate-y-0.5
                                hover:shadow-[0_4px_12px_rgba(232,136,111,0.12)]
                                transition-all duration-300"
+                    style={{
+                        color: 'var(--text-medium)',
+                        backgroundColor: 'color-mix(in srgb, var(--bg-secondary) 50%, transparent)',
+                        borderColor: 'color-mix(in srgb, var(--peach, #f0bfa0) 40%, transparent)'
+                    }}
                 >
                     Learn More
                 </a>
@@ -77,7 +90,9 @@ const Hero = () => {
                         <div className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-[#e8886f] to-[#f0bfa0] bg-clip-text text-transparent">
                             {stat.value}
                         </div>
-                        <div className="text-xs sm:text-sm font-medium text-[#a8887a] mt-1 tracking-wide">
+                        <div className="text-xs sm:text-sm font-medium mt-1 tracking-wide transition-colors duration-500"
+                            style={{ color: 'var(--text-muted)' }}
+                        >
                             {stat.label}
                         </div>
                     </div>
