@@ -48,5 +48,3 @@ function App() {
 }
 
 export default App;
-//active stage 
-//Non-active stage
